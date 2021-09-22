@@ -6,7 +6,10 @@ using a single analog output put to generate the text. It's not pretty, but it i
 functional for debugging firmware to display values (hex or decimal) in realtime.
 
 Here's some oscilloscope screenshots:
-![screenshot](https://user-images.githubusercontent.com/6484779/87254182-86142780-c435-11ea-89f4-02917d545e36.jpg)
+![screenshot](https://raw.githubusercontent.com/erco77/scopetext/main/images/rigol-dots-mode.jpg)
+![screenshot](https://raw.githubusercontent.com/erco77/scopetext/main/images/rigol-vector-mode.jpg)
+![screenshot](https://raw.githubusercontent.com/erco77/scopetext/main/images/analog-scope.jpg)
+![screenshot](https://raw.githubusercontent.com/erco77/scopetext/main/images/digits-vector-mode-closeup.jpg)
 
 Using the code is simple; just copy the one scopetext.h file into your firmware's
 src directory, and add these two lines to your application:
