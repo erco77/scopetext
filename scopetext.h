@@ -289,7 +289,7 @@ char SCOPETEXT_HexDigit(unsigned char val) {
 //    For example use, see scopetext-examples/hex-convert.c
 //
 char* SCOPETEXT_AsHex(unsigned char val, char *s) {
-    *s++ = SCOPETEXT_HexDigit(val >> 8);      // MSN
+    *s++ = SCOPETEXT_HexDigit(val >> 4);      // MSN
     *s++ = SCOPETEXT_HexDigit(val & 0x0f);    // LSN
     *s   = 0;                                 // null terminate string
     return s;
