@@ -7,12 +7,15 @@ functional for debugging firmware to display values (hex or decimal) in realtime
 
 Here's some oscilloscope screenshots:
 ![screenshot](https://raw.githubusercontent.com/erco77/scopetext/main/images/rigol-dots-mode.jpg)
+
 Typical result on a digital scope.
 
 ![screenshot](https://raw.githubusercontent.com/erco77/scopetext/main/images/rigol-vector-mode.jpg)
+
 Scope in vector mode is harder to read, but still visible.
 
 ![screenshot](https://raw.githubusercontent.com/erco77/scopetext/main/images/digits-vector-mode-closeup.jpg)
+
 Closeup of the digits to see the "pixels", which are just small delays holding the analog output voltage.
 
 Using the code is simple; just copy the one scopetext.h file into your firmware's
@@ -34,6 +37,7 @@ Voltage and Time are adjusted to get the most readable results.
 Since there are no special requirements for the scope, even old analog scopes can be used.
 
 ![screenshot](https://raw.githubusercontent.com/erco77/scopetext/main/images/analog-scope.jpg)
+
 Analog scope.
 
 For best results its important the DAC be responsive, fast during high speed changes.
