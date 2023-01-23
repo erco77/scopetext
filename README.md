@@ -7,14 +7,20 @@ functional for debugging firmware to display values (hex or decimal) in realtime
 
 Here's some oscilloscope screenshots.
 
-Typical result on a digital scope:
-![screenshot](https://raw.githubusercontent.com/erco77/scopetext/main/images/rigol-dots-mode.jpg)
 
-In "vector mode", text is harder to read but still visible:
-![screenshot](https://raw.githubusercontent.com/erco77/scopetext/main/images/rigol-vector-mode.jpg)
+| ![screenshot](https://raw.githubusercontent.com/erco77/scopetext/main/images/rigol-dots-mode.jpg)
+|:--:|
+| Typical result on a digital scope. |
 
-Closeup of digits to see "pixels", which are just small delays holding the analog output voltage:
-![screenshot](https://raw.githubusercontent.com/erco77/scopetext/main/images/digits-vector-mode-closeup.jpg)
+| ![screenshot](https://raw.githubusercontent.com/erco77/scopetext/main/images/rigol-vector-mode.jpg)
+|:--:|
+| In "vector mode", text is harder to read but still visible. |
+
+
+
+| ![screenshot](https://raw.githubusercontent.com/erco77/scopetext/main/images/digits-vector-mode-closeup.jpg)
+|:--:|
+| Closeup of digits to see "pixels", which are just small delays holding the analog output voltage. |
 
 Using the code is simple; just copy the one scopetext.h file into your firmware's
 src directory, and add these two lines to your application:
@@ -32,8 +38,11 @@ making it easy to turn off for production.
 
 The scope operates in normal "sweep" mode monitoring a single channel with a trigger.
 Voltage and Time are adjusted to get the most readable results.
-Since there are no special requirements for the scope, even old analog scopes can be used:
-![screenshot](https://raw.githubusercontent.com/erco77/scopetext/main/images/analog-scope.jpg)
+Since there are no special requirements for the scope, even old analog scopes can be used.
+
+| ![screenshot](https://raw.githubusercontent.com/erco77/scopetext/main/images/analog-scope.jpg)
+|:--:|
+| Analog scope. |
 
 For best results its important the DAC be responsive, fast during high speed changes.
 Noise or slow ramps between changes can make the digits harder to read.
