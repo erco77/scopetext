@@ -5,18 +5,16 @@ This is a small .h file that renders text to the oscilloscope in normal sweep mo
 using a single analog output put to generate the text. It's not pretty, but it is
 functional for debugging firmware to display values (hex or decimal) in realtime.
 
-Here's some oscilloscope screenshots:
+Here's some oscilloscope screenshots.
+
+Typical result on a digital scope:
 ![screenshot](https://raw.githubusercontent.com/erco77/scopetext/main/images/rigol-dots-mode.jpg)
 
-Typical result on a digital scope.
-
+In "vector mode", text is harder to read but still visible:
 ![screenshot](https://raw.githubusercontent.com/erco77/scopetext/main/images/rigol-vector-mode.jpg)
 
-Scope in vector mode is harder to read, but still visible.
-
+Closeup of digits to see "pixels", which are just small delays holding the analog output voltage:
 ![screenshot](https://raw.githubusercontent.com/erco77/scopetext/main/images/digits-vector-mode-closeup.jpg)
-
-Closeup of the digits to see the "pixels", which are just small delays holding the analog output voltage.
 
 Using the code is simple; just copy the one scopetext.h file into your firmware's
 src directory, and add these two lines to your application:
@@ -34,11 +32,8 @@ making it easy to turn off for production.
 
 The scope operates in normal "sweep" mode monitoring a single channel with a trigger.
 Voltage and Time are adjusted to get the most readable results.
-Since there are no special requirements for the scope, even old analog scopes can be used.
-
+Since there are no special requirements for the scope, even old analog scopes can be used:
 ![screenshot](https://raw.githubusercontent.com/erco77/scopetext/main/images/analog-scope.jpg)
-
-Analog scope.
 
 For best results its important the DAC be responsive, fast during high speed changes.
 Noise or slow ramps between changes can make the digits harder to read.
