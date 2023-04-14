@@ -2,8 +2,8 @@
 Display alpha/numeric debugging text on oscilloscope from PIC using single bit (analog DAC output)
 
 This is a small .h file that renders text to the oscilloscope in normal sweep mode
-using a single analog output put to generate the text. It's not pretty, but it is
-functional for debugging firmware to display values (hex or decimal) in realtime.
+using a single analog output to generate the text. It's not pretty, but functional for
+debugging firmware to display realtime values in e.g hex or decimal.
 
 Here's some oscilloscope screenshots.
 
