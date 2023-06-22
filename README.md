@@ -3,7 +3,8 @@ Display alpha/numeric text on an oscilloscope using a single analog output pin o
 
 This is a small .h file, **scopetext.h**, that renders text to the oscilloscope in normal sweep mode
 using a single analog output (DAC) to generate the text. It's not pretty, but functional for
-debugging firmware to display realtime values in e.g hex or decimal.
+debugging firmware to display realtime values in e.g hex or decimal. Hex and decimal conversion
+routines are provided in the .h file, and example use shown in the "examples" directory.
 
 It comes with a font for 0-9, A-F, colon, comma, decimal, plus, minus/dash and equals. You can easily
 define your own custom characters using binary "ASCII art"; See the source code for details.
