@@ -38,14 +38,31 @@ README-scopetext.txt
            the right values based on your sawtooth wave test (above).
 
            Note that some PIC chips don't have 8bit DACs (0-255), so you may need to 
-           adjust the SCALE and OFFSET values. For instance, for a 5bit DAC (0-31),
-           since the highest value is 31, you need to lower the values, e.g.
+           adjust the SCALE and YMAX values. 
 
-                    #define SCOPETEXT_YOFFSET   2   // was 10
-                    #define SCOPETEXT_YSCALE    4   // was 50
+	   For example: for a 5bit DAC (0-31), since the highest value is 31,
+	   YMAX should be 31, e.g:
 
-           ..since the font glyphs are 7 rows high, (7*4)+2 = 30,
-           which is just below the 31 limit for the 5bit DAC.
+
+                    #define SCOPETEXT_YMAX      31
+
+	   Normally YSCALE can be left at (SCOPETEXT_YMAX/6):
+
+                    #define SCOPETEXT_YSCALE    (SCOPETEXT_YMAX/6)
+
+	   If you adjust this value, be sure that (SCOPETEXT_YSCALE*(SCOPETEXT_HEIGHT-1))
+	   is less than SCOPETEXT_YMAX, or the font will either wrap vertically, or
+	   vertically truncated, or other ugly things.
+
+           The font glyphs are 5 rows high, so the DAC values for drawing the font
+	   will be:
+
+	       SCOPETEXT_YMAX - (y*SCOPETEXT_YSCALE)
+
+	   ..where y is in the range 0 to 4.
+
+	   So the fonts will be flush to the top of the DAC's output, and will be
+	   "drawn" below that voltage level based on the SCOPETEXT_YSCALE.
 
         3. As a test, somewhere in your main() loop, call:
         
@@ -56,6 +73,11 @@ README-scopetext.txt
         4. Build your app, and set your oscilloscope to monitor the analog output pin.
            Tweak the "Volts" and "Sweep Time" until the text is clear enough to see.
            Some scopes have special modes that improve the text visibility.
+	   Feel free to also adjust the software values:
+
+	       SCOPETEXT_YMAX          -- usually the highest value the DAC can handle
+	       SCOPETEXT_YSCALE        -- usually (YMAX/6)
+	       SCOPETEXT_PIXEL_WIDTH   -- in usecs
 
     SLOW DACS
     ---------

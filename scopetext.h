@@ -11,13 +11,15 @@
 // User definable values.
 //     Change these three values as needed for your PIC chip + scope timing requirements.
 //
-#define SCOPETEXT_OUTPUT    DAC1CON1bits.DAC1R   // analog output port to write to
-#define SCOPETEXT_YOFFSET   50                   // how high above gnd the text appears
-#define SCOPETEXT_YSCALE    10                   // font height scale
+#define SCOPETEXT_OUTPUT      DAC1CON1bits.DAC1R // analog output port to write to
+#define SCOPETEXT_YMAX        31                 // maximum value for DAC (use 31 for 5bit DAC, etc)
+#define SCOPETEXT_YSCALE      (SCOPETEXT_YMAX/6) // font scale; (YSCALE*HEIGHT) must be less than YMAX
+#define SCOPETEXT_PIXEL_WIDTH 5                  // how "wide" each pixel is (in usecs)
+                                                 // (larger values make wider pixels)
 
 // Constants
-#define SCOPETEXT_HEIGHT    5                    // height of font in bit rows
-#define SCOPETEXT_WIDTH     8                    // width of font in bit columns
+#define SCOPETEXT_HEIGHT    5       // height of font glyph in rows
+#define SCOPETEXT_WIDTH     8       // width of font glyph in columns
 
 // Struct for a single font character
 typedef struct {
@@ -250,15 +252,15 @@ int SCOPETEXT_FontForChar(unsigned char c) {
 void SCOPETEXT_Print(char *s) {
     const unsigned char voff = 0;   // voltage value if font bit is off
     unsigned char       von  = 0;   // voltage value if font bit is ON
-    unsigned char onoff;
+    unsigned char       onoff;
     while ( *s ) {
         int i = SCOPETEXT_FontForChar(*s++);
         for ( int x=0; x<SCOPETEXT_WIDTH; x++ ) {
-            for ( int y=0; y<SCOPETEXT_HEIGHT; y++ ) {
+            for ( int y=SCOPETEXT_HEIGHT-1; y>=0; y-- ) {
                 onoff = (G_font[i].glyph[y] << x) & 0x80;
-                von = SCOPETEXT_YOFFSET + ((SCOPETEXT_HEIGHT-y)*SCOPETEXT_YSCALE);
-                SCOPETEXT_OUTPUT = onoff ? von : voff;
-                //__delay_us(...);           // add optional delay for wider pixels
+                von = SCOPETEXT_YMAX - y*SCOPETEXT_YSCALE;
+                SCOPETEXT_OUTPUT = (onoff ? von : voff);
+		__delay_us(SCOPETEXT_PIXEL_WIDTH);
             }
         }
         SCOPETEXT_OUTPUT = voff;             // turn off pixels between chars
